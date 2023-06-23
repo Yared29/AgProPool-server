@@ -1,0 +1,19 @@
+{
+  "name": "AgProPool-server",
+  "version": "1.0.0",
+  "description": "Backend for AgProPool-server",
+  "main": "index.js",
+  "repository": "https://github.com/Yared29/AgProPool-server.git",
+  "author": "Yared Tekile",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "mongoose": "^7.3.1",
+    "morgan": "^1.10.0",
+    "validator": "^13.9.0"
+  }
+}
