@@ -7,6 +7,8 @@ import morgan from "morgan";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import connectDB from "./config/db.js";
 
+import userRoutes from "./routes/userRoutes.js";
+
 dotenv.config();
 
 connectDB();
@@ -24,6 +26,8 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.send("AgProPool API is running...");
 });
+
+app.use("/api/user", userRoutes);
 
 app.use(notFound);
 
