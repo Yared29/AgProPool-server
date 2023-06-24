@@ -6,7 +6,7 @@ const validatCreateTransactionInput = async (req, res, next) => {
   let errors = {};
   data.farmer_name = !isEmpty(data.farmer_name) ? data.farmer_name : "";
   data.crop = !isEmpty(data.crop) ? data.crop : "";
-  data.quantity = !isEmpty(data.quantity) ? data.quantity : "";
+  data.quantity = !isEmpty(data.quantity) ? "" + data.quantity : "";
 
   if (Validator.isEmpty(data.farmer_name)) {
     errors.farmer_name = "Farmer name field is required";

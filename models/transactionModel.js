@@ -14,6 +14,10 @@ const transactionSchema = mongoose.Schema(
       type: Number,
       required: true,
     },
+    createdBy: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "User",
+    },
   },
   { timestamps: true }
 );

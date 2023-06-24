@@ -12,7 +12,7 @@ const router = express.Router();
 // @desc    Get all transactions
 // @route   GET /api/transaction/all
 // @acess   Private
-router.route("/all").get([protect, isFarmerAgent], getTransactions);
+router.route("/").get([protect, isFarmerAgent], getTransactions);
 
 // @desc    Create a new transaction
 // @route   POST /api/transaction/create

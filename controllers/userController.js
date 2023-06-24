@@ -98,4 +98,15 @@ const registerFarmer = asyncHandler(async (req, res) => {
   }
 });
 
-export { loginUser, registerFarmerAgent, registerFarmer };
+const getFarmers = asyncHandler(async (req, res) => {
+  const farmers = await User.find({ role: "farmer" }).populate("registeredBy");
+
+  if (farmers) {
+    res.status(201).json(farmers);
+  } else {
+    res.status(400);
+    throw new Error("Error finding farmers");
+  }
+});
+
+export { loginUser, registerFarmerAgent, registerFarmer, getFarmers };

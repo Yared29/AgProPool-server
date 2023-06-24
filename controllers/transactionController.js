@@ -3,7 +3,9 @@ import Transaction from "../models/transactionModel.js";
 import { isEmpty } from "../validations/isEmpty.js";
 
 const getTransactions = asyncHandler(async (req, res) => {
-  const transactions = await Transaction.find();
+  const transactions = await Transaction.find()
+    .populate("createdBy")
+    .sort({ createdAt: -1 });
 
   if (transactions) {
     res.status(201).json(transactions);
@@ -20,15 +22,11 @@ const createTransaction = asyncHandler(async (req, res) => {
     farmer_name,
     crop,
     quantity,
+    createdBy: req.user.id,
   });
 
   if (transaction) {
-    res.status(201).json({
-      _id: transaction._id,
-      farmer_name: transaction.farmer_name,
-      crop: transaction.crop,
-      quantity: transaction.quantity,
-    });
+    res.status(201).json(transaction.populate("createdBy"));
   } else {
     res.status(400);
     throw new Error("Invalid transaction data");

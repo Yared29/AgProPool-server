@@ -3,6 +3,7 @@ import {
   loginUser,
   registerFarmer,
   registerFarmerAgent,
+  getFarmers,
 } from "../controllers/userController.js";
 import { protect } from "../middleware/authMiddleware.js";
 import {
@@ -34,5 +35,10 @@ router
     [protect, isFarmerAgent, validateFarmerRegisterationInput],
     registerFarmer
   );
+
+// @desc    Get all farmers
+// @route   GET /api/user/farmers
+// @acess   Private
+router.route("/farmers").get([protect, isFarmerAgent], getFarmers);
 
 export default router;
