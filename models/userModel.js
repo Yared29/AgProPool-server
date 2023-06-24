@@ -15,6 +15,9 @@ const userSchema = mongoose.Schema(
     kebele: {
       type: String,
     },
+    age: {
+      type: String,
+    },
     gender: {
       type: String,
       enum: ["male", "female"],

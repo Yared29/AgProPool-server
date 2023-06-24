@@ -9,6 +9,8 @@ import connectDB from "./config/db.js";
 
 import userRoutes from "./routes/userRoutes.js";
 import transactionRoutes from "./routes/transactionRoutes.js";
+import cropRoutes from "./routes/cropRoutes.js";
+import kebeleRoutes from "./routes/kebeleRoutes.js";
 
 dotenv.config();
 
@@ -30,6 +32,8 @@ app.get("/", (req, res) => {
 
 app.use("/api/user", userRoutes);
 app.use("/api/transaction", transactionRoutes);
+app.use("/api/crop", cropRoutes);
+app.use("/api/kebele", kebeleRoutes);
 
 app.use(notFound);
 

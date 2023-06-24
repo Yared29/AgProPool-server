@@ -7,7 +7,8 @@ const transactionSchema = mongoose.Schema(
       required: true,
     },
     crop: {
-      type: String,
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "Crop",
       required: true,
     },
     quantity: {
