@@ -2,8 +2,9 @@ import mongoose from "mongoose";
 
 const transactionSchema = mongoose.Schema(
   {
-    farmer_name: {
-      type: String,
+    farmer: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "User",
       required: true,
     },
     crop: {
