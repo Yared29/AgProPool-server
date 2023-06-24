@@ -32,11 +32,13 @@ const getTransactions = asyncHandler(async (req, res) => {
     })
       .populate("createdBy")
       .populate("crop")
+      .populate("farmer")
       .sort({ createdAt: -1 });
   } else {
     transactions = await Transaction.find()
       .populate("createdBy")
       .populate("crop")
+      .populate("farmer")
       .sort({ createdAt: -1 });
   }
 
@@ -49,10 +51,10 @@ const getTransactions = asyncHandler(async (req, res) => {
 });
 
 const createTransaction = asyncHandler(async (req, res) => {
-  const { farmer_name, crop, quantity } = req.body;
+  const { farmer, crop, quantity } = req.body;
 
   const transaction = await Transaction.create({
-    farmer_name,
+    farmer,
     crop,
     quantity,
     createdBy: req.user.id,

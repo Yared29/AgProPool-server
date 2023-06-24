@@ -4,12 +4,12 @@ import { isEmpty } from "./isEmpty.js";
 const validatCreateTransactionInput = async (req, res, next) => {
   let data = req.body;
   let errors = {};
-  data.farmer_name = !isEmpty(data.farmer_name) ? data.farmer_name : "";
+  data.farmer = !isEmpty(data.farmer) ? data.farmer : "";
   data.crop = !isEmpty(data.crop) ? data.crop : "";
   data.quantity = !isEmpty(data.quantity) ? "" + data.quantity : "";
 
-  if (Validator.isEmpty(data.farmer_name)) {
-    errors.farmer_name = "Farmer name field is required";
+  if (Validator.isEmpty(data.farmer)) {
+    errors.farmer = "Farmer name field is required";
   }
 
   if (Validator.isEmpty(data.crop)) {
