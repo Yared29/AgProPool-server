@@ -5,6 +5,7 @@ const cropSchema = mongoose.Schema(
     name: {
       type: String,
       required: true,
+      unique: true,
     },
     createdBy: {
       type: mongoose.SchemaTypes.ObjectId,
