@@ -6,14 +6,16 @@ import {
 } from "../controllers/transactionController.js";
 import { protect } from "../middleware/authMiddleware.js";
 import { validatCreateTransactionInput } from "../validations/transactionValidator.js";
-import { isFarmerAgent } from "../middleware/roleCheckMiddleware.js";
+import { isAdminSuperAdminFarmerAgentOrMediator } from "../middleware/roleCheckMiddleware.js";
 
 const router = express.Router();
 
 // @desc    Get all transactions
 // @route   GET /api/transaction
 // @acess   Private
-router.route("/").get([protect, isFarmerAgent], getTransactions);
+router
+  .route("/")
+  .get([protect, isAdminSuperAdminFarmerAgentOrMediator], getTransactions);
 
 // @desc    Create a new transaction
 // @route   POST /api/transaction/create
@@ -21,7 +23,11 @@ router.route("/").get([protect, isFarmerAgent], getTransactions);
 router
   .route("/create")
   .post(
-    [protect, isFarmerAgent, validatCreateTransactionInput],
+    [
+      protect,
+      isAdminSuperAdminFarmerAgentOrMediator,
+      validatCreateTransactionInput,
+    ],
     createTransaction
   );
 
@@ -30,5 +36,8 @@ router
 // @acess   Private
 router
   .route("/crops-transaction-with-count")
-  .get([protect, isFarmerAgent], getCropTransactionsWithCount);
+  .get(
+    [protect, isAdminSuperAdminFarmerAgentOrMediator],
+    getCropTransactionsWithCount
+  );
 export default router;

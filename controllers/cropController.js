@@ -16,7 +16,7 @@ const getCrops = asyncHandler(async (req, res) => {
 const createCrop = asyncHandler(async (req, res) => {
   const { name } = req.body;
   const cropExist = await Crop.find({ name: name });
-  if (cropExist) {
+  if (!isEmpty(cropExist)) {
     res.status(400);
     throw new Error("Crop already exist in database");
   }

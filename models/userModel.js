@@ -13,7 +13,8 @@ const userSchema = mongoose.Schema(
       unique: true,
     },
     kebele: {
-      type: String,
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "Kebele",
     },
     age: {
       type: String,
@@ -31,7 +32,7 @@ const userSchema = mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["admin", "farmer", "farmer_agent", "mediator"],
+      enum: ["super_admin", "admin", "farmer", "farmer_agent", "mediator"],
       default: "user",
     },
   },

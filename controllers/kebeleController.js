@@ -16,7 +16,8 @@ const getKebeles = asyncHandler(async (req, res) => {
 const createKebele = asyncHandler(async (req, res) => {
   const { name } = req.body;
   const kebeleExist = await Kebele.find({ name: name });
-  if (kebeleExist) {
+  console.log("kebeleExist : ", kebeleExist);
+  if (!isEmpty(kebeleExist)) {
     res.status(400);
     throw new Error("Kebele already exist in database");
   }
